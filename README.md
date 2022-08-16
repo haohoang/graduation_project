@@ -24,7 +24,7 @@ Cuối cùng nhấn "Create"
 
 * Bước 5: Dump dữ liệu vào database: Mở terminal của database --> gõ lệnh sau vào terminal
 
-`./bin/neo4j-admin load --from=path/to/dumpfile.dump --verbose`
+./bin/neo4j-admin load --from=path/to/dumpfile.dump --verbose
 
 Truy cập link sau để biết thêm về dump dữ liệu vào Neo4j: https://neo4j.com/docs/operations-manual/current/backup-restore/restore-dump/
 
@@ -36,37 +36,37 @@ Truy cập link sau để biết thêm về dump dữ liệu vào Neo4j: https:/
 
 * Bước 1: Di chuyển vào thư mục backend
 
-    `cd backend`
+        cd backend
 
 * Bước 2: Tạo môi trường conda để chạy code python
 
-    `conda create --name env_name python=3.9`
+        conda create --name env_name python=3.9
 
-    `conda activate env_name`
+        conda activate env_name
 
-    `pip install requirements.txt`
+        pip install requirements.txt
 
 * Bước 3: Chạy backend
 
-    `export FLASK_APP=api`
+        export FLASK_APP=api
 
-    `export FLASK_ENV=development`
+        export FLASK_ENV=development
 
-    `flask run -p 5000`
+        flask run -p 5000
 
 2.2 Cài đặt môi trường frontend
 
 * Bước 1: Di chuyển vào thư mục backend
 
-    `cd frontend`
+            cd frontend
 
 * Bước 2: Cài đặt các thư viện 
 
-    `yarn`
+            yarn
 
 * Bước 3: Chạy frontend
 
-    `yarn start`
+        yarn start
 
 
 3. Cài đặt mô hình đề xuất 
@@ -76,33 +76,46 @@ Truy cập link sau để biết thêm về dump dữ liệu vào Neo4j: https:/
 
 * Bước 1: Di chuyển vào thư mục model
 
-    `cd model`
+        cd model
 
 * Bước 2: Tạo môi trường conda để chạy code python
 
-    `conda create --name env_model python=3.9`
+        conda create --name env_model python=3.9
 
-    `conda activate env_model`
+        conda activate env_model
 
-    `pip install requirements.txt`
+        pip install requirements.txt
 
 * Bước 3: Mở file crontab để lập lịch chạy cho hệ thống
 
 * Bước 3.1: Lập lịch chạy thu thập dữ liệu
 
-`18 0 * * * /path/to/conda/env_model/bin/python /path/to/folder/model/src/crawl_process.py --mode 1`
+        18 0 * * * /path/to/conda/env_model/bin/python /path/to/folder/model/src/crawl_process.py --mode 1
 
-`0 0 * * * /path/to/conda/env_model/bin/python /path/to/folder/model/src/crawl_process.py --mode 2`
+        0 0 * * * /path/to/conda/env_model/bin/python /path/to/folder/model/src/crawl_process.py --mode 2
 
-`0 12 * * 6 /path/to/conda/env_model/bin/python /path/to/folder/model/src/extract_and_save.py`
+        0 12 * * 6 /path/to/conda/env_model/bin/python /path/to/folder/model/src/extract_and_save.py
 
 * Bước 3.1: Lập lịch truy xuất thông tin người bán
 
-`0 21 1 * * /path/to/conda/env_model/bin/python /path/to/folder/model/src/extract_seller.py`
+        0 21 1 * * /path/to/conda/env_model/bin/python /path/to/folder/model/src/extract_seller.py
 
 
 * Bước 3.2: Lập lịch phân tích dữ liệu
 
-`20 23 1 * * /path/to/conda/env_model/bin/python /path/to/folder/model/src/analyze_data.py`
+        20 23 1 * * /path/to/conda/env_model/bin/python /path/to/folder/model/src/analyze_data.py
+
+* Bước 4: Cài đặt selenoid
+
+Di chuyển đến thư mục selenoid
+
+        cd selenoid
+
+Chạy selenoid
+
+        ./selenoid_linux_amd64 -limit số_cpu
+
+Truy cập link https://aerokube.com/selenoid/latest/#_starting_selenoid_manually để đọc thêm về cách cấu hình selenoid.
+
 
 
